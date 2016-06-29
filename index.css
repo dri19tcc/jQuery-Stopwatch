@@ -7,15 +7,26 @@ body {
   margin: 0;
 }
 
-#stopWatch {
+.watch {
   font-size: 6rem;
-  top: 0; left: 0; right: 0; bottom: 0;
-  position: absolute;
+  left: 0; right: 0; bottom: 0;
   text-align: center;
-  margin-top: 30vh;
+  margin-top: 5vh;
 }
 
-#stopWatch button {
+.watch.first {
+  top: 0;
+}
+
+.watch.second {
+  top: 10;
+}
+
+.watch.third {
+  top: 20;
+}
+
+.stopWatch.start, .stopWatch.stop, .stopWatch.reset {
   background: transparent;
   border: 1px solid rgb(0, 253, 254);
   color: rgb(0, 253, 254);
@@ -23,7 +34,7 @@ body {
   font-size: 3rem;
 }
 
-#stopWatch button:hover,
-#stopWatch button:active {
+.watch button:hover,
+.watch button:active {
   background: rgb(253, 0, 254);
 }

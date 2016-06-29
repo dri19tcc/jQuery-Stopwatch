@@ -17,7 +17,6 @@ function StopWatch(callback) {
     clearInterval(this._interval)
     this._interval = null
     this._time = 0
-
   }
 
   this.addTime = function() { // adds time to the counter
@@ -41,6 +40,23 @@ function StopWatch(callback) {
   }
 }
 
+buttonClicks = function(event, container, display, stopWatch, button) {
+  event.preventDefault()
+  // var display = container.children(".display")
+  var buttons = container.children("button.stopWatch")
+  // which buttond did I click?
+  var button = $(button)
+  // and what should I do in response?
+  if (button.hasClass("start")) {
+    stopWatch.start()
+  } else if (button.hasClass("reset")) {
+    stopWatch.reset()
+    display.text("00:00:00:0")
+  } else {
+    stopWatch.stop()
+  }
+}
+
 $(document).ready(function() {
   console.log("Yay, Hello!");
 
@@ -61,59 +77,21 @@ $(document).ready(function() {
     display.text(newTime)
   })
   var stopWatch2 = new StopWatch(function(newTime) {
-    //update the display
     display2.text(newTime)
   })
   var stopWatch3 = new StopWatch(function(newTime) {
-    //update the display
     display3.text(newTime)
   })
 
   buttons.on("click", function(event) {
-    event.preventDefault()
-
-    // which buttond did I click?
-    var button = $(this)
-    // and what should I do in response?
-    if (button.hasClass("start")) {
-      stopWatch.start()
-    } else if (button.hasClass("reset")) {
-      stopWatch.reset()
-      display.text("00:00:00:0")
-    } else {
-      stopWatch.stop()
-    }
+    buttonClicks(event, container, display, stopWatch, this)
   })
 
   buttons2.on("click", function(event) {
-    event.preventDefault()
-
-    // which buttond did I click?
-    var button = $(this)
-    // and what should I do in response?
-    if (button.hasClass("start")) {
-      stopWatch2.start()
-    } else if (button.hasClass("reset")) {
-      stopWatch2.reset()
-      display2.text("00:00:00:0")
-    } else {
-      stopWatch2.stop()
-    }
+    buttonClicks(event, container2, display2, stopWatch2, this)
   })
 
   buttons3.on("click", function(event) {
-    event.preventDefault()
-
-    // which buttond did I click?
-    var button = $(this)
-    // and what should I do in response?
-    if (button.hasClass("start")) {
-      stopWatch3.start()
-    } else if (button.hasClass("reset")) {
-      stopWatch3.reset()
-      display3.text("00:00:00:0")
-    } else {
-      stopWatch3.stop()
-    }
+    buttonClicks(event, container3, display3, stopWatch3, this)
   })
 })
